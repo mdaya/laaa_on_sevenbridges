@@ -6,7 +6,8 @@ allele.afr.dose.file <- args[3]
 pheno.file <- args[4]
 r.model.file <- args[5]
 min.maf <- args[6]
-out.file.name <- args[7]
+out.file.prefix <- args[7]
+out.file.name <- paste0(out.file.prefix, "_laaa.txt")
 
 #Load the model functions
 source(r.model.file)
