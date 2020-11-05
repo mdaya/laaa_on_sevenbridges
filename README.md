@@ -127,9 +127,9 @@ runAlleleModelSummary <- function(model.frame) {
 
 The minimum MAF a variant should have to be included in the model
 
-### out\_file\_name
+### out\_file\_prefix
 
-The output file name.
+Prefix to be appended to the output \_laaa.txt results file
 
 ### Content of output file
 
