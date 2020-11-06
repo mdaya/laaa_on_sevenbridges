@@ -12,7 +12,7 @@ if (is.na(start.pos) | is.na(end.pos)) {
   end.pos <- locus.frame$position[nrow(locus.frame)]
 }
 if (is.na(width)) {
-  width <- 10
+  width <- 14
 }
 if (is.na(height)) {
   height <- 14
@@ -85,6 +85,39 @@ ggplot(data = locus.frame) +
   ylim(plot.range) +
   geom_text(aes(x = external_gene_name, y = start_position, label = external_gene_name, colour = gene_biotype_fac), fontface = 2, alpha = I(0.7), hjust = "right", size= 2.5) +
   labs(title = "Allele-African", subtitle = paste0("Genes"), caption = paste0("Data source: ", gene.ensembl@host, " + Data set: ", gene.ensembl@dataset), color = "Gene Biotype") +
+  theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        strip.text.y = element_text(angle = 0),
+        legend.position="bottom",
+        panel.grid.major.y = element_blank()) +
+  expand_limits(y=c(-1, 1)) +
+  scale_color_manual(values = c("black", metafolio::gg_color_hue(nlevels(out.bm.genes.region$gene_biotype_fac)-1))) +
+  plot_layout(ncol = 1, heights = c(6, 2))
+dev.off()
+
+
+allele.frame <- locus.frame[,c("position", "allele_dose_p")]
+names(allele.frame)[2] <- "p"
+allele.frame$dose_type <- "Allele Dose"
+afr.frame <- locus.frame[,c("position", "afr_dose_p")]
+names(afr.frame)[2] <- "p"
+afr.frame$dose_type <- "African Dose"
+allele.afr.frame <- locus.frame[,c("position", "allele_afr_dose_p")]
+names(allele.afr.frame)[2] <- "p"
+allele.afr.frame$dose_type <- "Allele-African Dose"
+merged.locus.frame <- merge(allele.frame, afr.frame, all.x=T, all.y=T)
+merged.locus.frame <- merge(merged.locus.frame, allele.afr.frame, all.x=T, all.y=T)
+merged.locus.frame$dose_type <- factor(merged.locus.frame$dose_type)
+pdf(paste0(out.file.prefix, "_combined_dose.pdf"), width = width, height = height)
+ggplot(data = merged.locus.frame) +
+  geom_point(aes(position, -log10(p), colour=dose_type), shape = 20) +
+  ggplot(data = out.bm.genes.region) +
+  geom_linerange(aes(x = external_gene_name, ymin = start_position, ymax = end_position, colour = gene_biotype_fac, group = gene_biotype_fac)) +
+  coord_flip() + ylab("") +
+  ylim(plot.range) +
+  geom_text(aes(x = external_gene_name, y = start_position, label = external_gene_name, colour = gene_biotype_fac), fontface = 2, alpha = I(0.7), hjust = "right", size= 2.5) +
+  labs(title = out.file.prefix, subtitle = paste0("Genes"), caption = paste0("Data source: ", gene.ensembl@host, " + Data set: ", gene.ensembl@dataset), color = "Gene Biotype") +
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
