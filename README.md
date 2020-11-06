@@ -34,9 +34,11 @@ To create locus zoom plots of the output, run the following command from the doc
 ```
 bash /home/analyst/locus_zoom.sh \
    assoc_file \
+   out_file_prefix \
    begin_hg19_pos \
    end_hg19_pos \
-   out_file_prefix
+   width \
+   height
 ```
 
 ## create_dose_frames parameters
@@ -159,15 +161,28 @@ The output file will contain the follwing columns:
 
 The full path name of the association output file produced by run\_laaa
 
+### out\_file\_prefix
+
+Prefix to be given to the locus zoom PDF output files
+
 ### begin\_hg19\_pos
 
 The hg19 base pair position that marks the beginning of the genomic region to
-plot
+plot. Optional - if not specified the first position will be set to the first
+position in the assoc\_file.
 
 ### end\_hg19\_pos
 
 The hg19 base pair position that marks the end of the genomic region to plot
+plot. Optional - if not specified the last position will be set to the first
+position in the assoc\_file.
 
-### out\_file\_prefix
+### width
 
-Prefix to be given to the locus zoom PDF output files
+Width in inches of the PDFs that will be generated. Optional - if not specified
+will be set to 10.
+
+### height
+
+Height in inches of the PDFs that will be generated. Optional - if not specified
+will be set to 14.
