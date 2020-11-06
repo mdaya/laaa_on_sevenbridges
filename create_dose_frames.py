@@ -24,7 +24,7 @@ snp_info_file.close()
 #Open output files and write header line by processing sample ID file
 allele_dose_file=open(outfile_prefix + "allele_dose.txt", "w")
 afr_dose_file=open(outfile_prefix + "afr_dose.txt", "w")
-allele_afr_dose_file=open(outfile_prefix + "allele_afr_dose.txt", "w")
+allele_afr_dose_file=open(outfile_prefix + "allele-afr_dose.txt", "w")
 allele_dose_file.write("position\tref\talt")
 afr_dose_file.write("position\tref\talt")
 allele_afr_dose_file.write("position\tref\talt")
