@@ -1,10 +1,11 @@
 args <- commandArgs(trailingOnly = TRUE)
 locus.frame <- read.delim(args[1], stringsAsFactors = F)
 out.file.prefix <- args[2]
-start.pos <- args[3]
-end.pos <- args[4]
-width <- args[5]
-height <- args[6]
+chr <- args[3]
+start.pos <- args[4]
+end.pos <- args[5]
+width <- args[6]
+height <- args[7]
 
 #Set optional parameters
 if (is.na(start.pos) | is.na(end.pos)) {
@@ -27,7 +28,7 @@ gene.ensembl <- useEnsembl(biomart = "ensembl", dataset = "hsapiens_gene_ensembl
 out.bm.genes.region <- getBM(
   attributes = c('start_position','end_position','ensembl_gene_id','external_gene_name', 'gene_biotype'),
   filters = c('chromosome_name','start','end'),
-  values = list(1, start.pos, end.pos),
+  values = list(chr, start.pos, end.pos),
   mart = gene.ensembl)
 out.bm.genes.region <- out.bm.genes.region %>% mutate(gene_biotype_fac = fct_relevel(as.factor(gene_biotype),
                                                                                      "protein_coding"), external_gene_name = fct_reorder2(external_gene_name,

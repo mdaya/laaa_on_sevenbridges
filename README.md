@@ -35,6 +35,7 @@ To create locus zoom plots of the output, run the following command from the doc
 bash /home/analyst/locus_zoom.sh \
    assoc_file \
    out_file_prefix \
+   chr \
    begin_hg19_pos \
    end_hg19_pos \
    width \
@@ -65,7 +66,7 @@ the same order as they appear in the alleles\_rephased\_file )
 
 ### chr
 
-The number of the chroomsome from which dosages should be extracted
+The number of the chromosome from which dosages should be extracted
 
 ### begin\_hg19\_pos
 
@@ -164,6 +165,10 @@ The full path name of the association output file produced by run\_laaa
 ### out\_file\_prefix
 
 Prefix to be given to the locus zoom PDF output files
+
+### chr
+
+The number of the chromosome to plot
 
 ### begin\_hg19\_pos
 
