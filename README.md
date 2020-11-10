@@ -39,7 +39,10 @@ bash /home/analyst/locus_zoom.sh \
    begin_hg19_pos \
    end_hg19_pos \
    width \
-   height
+   height \
+   base_font_size \
+   gene_text_size \
+   min_p
 ```
 
 ## create_dose_frames parameters
@@ -191,3 +194,17 @@ will be set to 10.
 
 Height in inches of the PDFs that will be generated. Optional - if not specified
 will be set to 14.
+
+### base_font_size
+
+Base font size of text elements in the plot. Optional - if not specfied will be set to 20.
+
+### gene_text_size
+
+Font size of gene names in the plot. Optional - if not specfied will be set to 5.
+
+### min_p
+
+Minimum p value that associations should have to be plotted red. Optional - if
+not specified will be set to 0.001
+
