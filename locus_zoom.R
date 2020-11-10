@@ -14,21 +14,34 @@ min.p <- args[10]
 if (is.na(start.pos) | is.na(end.pos)) {
   start.pos <- locus.frame$position[1]
   end.pos <- locus.frame$position[nrow(locus.frame)]
+} else {
+  start.pos <- as.numeric(start.pos)
+  end.pos <- as.numeric(end.pos)
 }
 if (is.na(width)) {
   width <- 14
+} else {
+  width <- as.numeric(width)
 }
 if (is.na(height)) {
   height <- 14
+} else {
+  height <- as.numeric(height)
 }
 if (is.na(base.font.size)) {
   base.font.size <- 20
+} else {
+  base.font.size <- as.numeric(base.font.size)
 }
 if (is.na(gene.text.size)) {
   gene.text.size <- 5
+} else {
+  gene.text.size <- as.numeric(gene.text.size)
 }
 if (is.na(min.p)) {
-  min.p < 0.001
+  min.p <- 0.001
+} else {
+  min.p <- as.numeric(min.p)
 }
 
 #Annotate the gene region using biomaRt
