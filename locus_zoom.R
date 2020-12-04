@@ -34,7 +34,7 @@ if (is.na(base.font.size)) {
   base.font.size <- as.numeric(base.font.size)
 }
 if (is.na(gene.text.size)) {
-  gene.text.size <- 5
+  gene.text.size <- 4.5
 } else {
   gene.text.size <- as.numeric(gene.text.size)
 }
@@ -68,6 +68,7 @@ significant <- rep("grey", nrow(locus.frame))
 significant[locus.frame$allele_dose_p <= min.p] <- "red"
 ggplot(data = locus.frame) +
   geom_point(aes(position, -log10(allele_dose_p)), shape = 19, colour=significant) +
+  xlim(plot.range) +
   ggplot(data = out.bm.genes.region) +
   geom_linerange(aes(x = external_gene_name, ymin = start_position, ymax = end_position, colour = gene_biotype_fac, group = gene_biotype_fac)) +
   coord_flip() + ylab("") +
@@ -82,7 +83,7 @@ ggplot(data = locus.frame) +
         strip.text.y = element_text(angle = 0),
         legend.position="bottom",
         panel.grid.major.y = element_blank()) +
-  plot_layout(ncol = 1, heights = c(6, 3))
+  plot_layout(ncol = 1, heights = c(6, 8))
 dev.off()
 
 pdf(paste0(out.file.prefix, "_afr_dose.pdf"), width = width, height = height)
@@ -91,6 +92,7 @@ significant <- rep("grey", nrow(locus.frame))
 significant[locus.frame$afr_dose_p <= min.p] <- "red"
 ggplot(data = locus.frame) +
   geom_point(aes(position, -log10(afr_dose_p)), shape = 19, colour=significant) +
+  xlim(plot.range) +
   ggplot(data = out.bm.genes.region) +
   geom_linerange(aes(x = external_gene_name, ymin = start_position, ymax = end_position, colour = gene_biotype_fac, group = gene_biotype_fac)) +
   coord_flip() + ylab("") +
@@ -114,6 +116,7 @@ significant <- rep("grey", nrow(locus.frame))
 significant[locus.frame$allele_afr_dose_p <= min.p] <- "red"
 ggplot(data = locus.frame) +
   geom_point(aes(position, -log10(allele_afr_dose_p)), shape = 19, colour=significant) +
+  xlim(plot.range) +
   ggplot(data = out.bm.genes.region) +
   geom_linerange(aes(x = external_gene_name, ymin = start_position, ymax = end_position, colour = gene_biotype_fac, group = gene_biotype_fac)) +
   coord_flip() + ylab("") +
@@ -148,6 +151,7 @@ pdf(paste0(out.file.prefix, "_combined_dose.pdf"), width = width, height = heigh
 theme_set(theme_classic(base_size=base.font.size))
 ggplot(data = merged.locus.frame) +
   geom_point(aes(position, -log10(p), colour=dose_type), shape = 19) +
+  xlim(plot.range) +
   ggplot(data = out.bm.genes.region) +
   geom_linerange(aes(x = external_gene_name, ymin = start_position, ymax = end_position, colour = gene_biotype_fac, group = gene_biotype_fac)) +
   coord_flip() + ylab("") +
