@@ -8,7 +8,8 @@ width <- args[6]
 height <- args[7]
 base.font.size <- args[8]
 gene.text.size <- args[9]
-min.p <- args[10]
+gene.height <- args[10]
+min.p <- args[11]
 
 #Set optional parameters
 if (is.na(start.pos) | is.na(end.pos)) {
@@ -37,6 +38,11 @@ if (is.na(gene.text.size)) {
   gene.text.size <- 4.5
 } else {
   gene.text.size <- as.numeric(gene.text.size)
+}
+if (is.na(gene.height)) {
+  gene.height <- 3
+} else {
+  gene.height <- as.numeric(gene.height)
 }
 if (is.na(min.p)) {
   min.p <- 0.001
@@ -83,7 +89,7 @@ ggplot(data = locus.frame) +
         strip.text.y = element_text(angle = 0),
         legend.position="bottom",
         panel.grid.major.y = element_blank()) +
-  plot_layout(ncol = 1, heights = c(6, 8))
+  plot_layout(ncol = 1, heights = c(6, gene.height))
 dev.off()
 
 pdf(paste0(out.file.prefix, "_afr_dose.pdf"), width = width, height = height)
@@ -107,7 +113,7 @@ ggplot(data = locus.frame) +
         panel.grid.major.y = element_blank()) +
   expand_limits(y=c(-1, 1)) +
   scale_color_manual(values = c("black", metafolio::gg_color_hue(nlevels(out.bm.genes.region$gene_biotype_fac)-1))) +
-  plot_layout(ncol = 1, heights = c(6, 3))
+  plot_layout(ncol = 1, heights = c(6, gene.height))
 dev.off()
 
 pdf(paste0(out.file.prefix, "_allele_afr_dose.pdf"), width = width, height = height)
@@ -131,7 +137,7 @@ ggplot(data = locus.frame) +
         panel.grid.major.y = element_blank()) +
   expand_limits(y=c(-1, 1)) +
   scale_color_manual(values = c("black", metafolio::gg_color_hue(nlevels(out.bm.genes.region$gene_biotype_fac)-1))) +
-  plot_layout(ncol = 1, heights = c(6, 3))
+  plot_layout(ncol = 1, heights = c(6, gene.height))
 dev.off()
 
 
@@ -166,5 +172,5 @@ ggplot(data = merged.locus.frame) +
         panel.grid.major.y = element_blank()) +
   expand_limits(y=c(-1, 1)) +
   scale_color_manual(values = c("black", metafolio::gg_color_hue(nlevels(out.bm.genes.region$gene_biotype_fac)-1))) +
-  plot_layout(ncol = 1, heights = c(6, 3))
+  plot_layout(ncol = 1, heights = c(6, gene.height))
 dev.off()
