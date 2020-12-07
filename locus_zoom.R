@@ -4,12 +4,12 @@ out.file.prefix <- args[2]
 chr <- args[3]
 start.pos <- args[4]
 end.pos <- args[5]
-width <- args[6]
-height <- args[7]
-base.font.size <- args[8]
-gene.text.size <- args[9]
-gene.height <- args[10]
-min.p <- args[11]
+gene.height <- args[6]
+min.p <- args[7]
+width <- args[8]
+height <- args[9]
+base.font.size <- args[10]
+gene.text.size <- args[11]
 
 #Set optional parameters
 if (is.na(start.pos) | is.na(end.pos)) {
@@ -18,6 +18,16 @@ if (is.na(start.pos) | is.na(end.pos)) {
 } else {
   start.pos <- as.numeric(start.pos)
   end.pos <- as.numeric(end.pos)
+}
+if (is.na(gene.height)) {
+  gene.height <- 3
+} else {
+  gene.height <- as.numeric(gene.height)
+}
+if (is.na(min.p)) {
+  min.p <- 0.001
+} else {
+  min.p <- as.numeric(min.p)
 }
 if (is.na(width)) {
   width <- 14
@@ -38,16 +48,6 @@ if (is.na(gene.text.size)) {
   gene.text.size <- 4.5
 } else {
   gene.text.size <- as.numeric(gene.text.size)
-}
-if (is.na(gene.height)) {
-  gene.height <- 3
-} else {
-  gene.height <- as.numeric(gene.height)
-}
-if (is.na(min.p)) {
-  min.p <- 0.001
-} else {
-  min.p <- as.numeric(min.p)
 }
 
 #Annotate the gene region using biomaRt
