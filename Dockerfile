@@ -10,7 +10,8 @@ RUN R -e "install.packages('patchwork')"
 RUN R -e "BiocManager::install('biomaRt', update=T, ask=F)"
 
 RUN apt-get update -y && apt-get install -y \
-    python
+    python \
+    plink1.9
 
 # Install scripts
 RUN mkdir /home/analyst

@@ -13,4 +13,4 @@ python /home/analyst/create_tped.py $allele_dose_file
 cat $laaa_results_file | cut -f1-3 | expand -t 1 | sed 's/ /:/g' > snp_list.txt
 
 #Run PLINK
-plink2 --tfile plink_in --extract snp_list.txt --indep-pairwise $window_size $step_size $r2
+plink1.9 --tfile plink_in --extract snp_list.txt --indep-pairwise $window_size $step_size $r2
