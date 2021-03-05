@@ -15,7 +15,7 @@ gene_text_size=${11}
 
 #Get closest coordinates to being and end position specified
 #cat /home/analyst/locus_zoom.R | R --vanilla --args \
-cat /home/laaa/locus_zoom.R | R --vanilla --args \
+cat /home/analyst/locus_zoom.R | R --vanilla --args \
    $assoc_file \
    $out_file_prefix \
    $chr \
